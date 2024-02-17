@@ -4,4 +4,5 @@ A shell script to analyze the homepage of any website, identify domains and subd
 Usage:
 
 chmod +x parsingHTML.sh
+
 ./parsingHTML.sh target"
