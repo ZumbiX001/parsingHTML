@@ -16,7 +16,7 @@ else
 	echo -e "\033[1;32m	(+): Running script on $1 \033[0m"
 	outFile=$(echo "$1" | sed 's/\..*//')
 	echo -e "\033[1;32m	(+): Downloading the frontpage of $1 \033[0m"
-	wget -q $1 -O "$1"
+	wget -q --user-agent="Mozzila/5.0" $1 -O "$1"
 	echo -e "\033[1;32m	(+): Aanalyzing the output file \033[0m"
 	echo ""
 	echo ""
@@ -24,5 +24,7 @@ else
 	rm $1
 	for url in $(cat $1.txt); do host $url | grep "has address"; done > "$outFile.txt"
 	rm $1.txt
-	sed 's/^//' "$outFile.txt" | sed 's/has address//g' | column -t
+	sed 's/^//' "$outFile.txt" | sed 's/has address//g' | column -t > "$outFile.final.txt"
+	cat "$outFile.final.txt"
+	rm "$outFile.txt"
 fi
